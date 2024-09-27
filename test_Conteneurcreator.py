@@ -8,6 +8,7 @@ def test_os_detection():
     system = platform.system()
     assert system in ["Linux", "Windows", "Darwin"], "Le système d'exploitation détecté n'est pas supporté."
 
+
 # b) Test de la vérification de l'installation de Docker
 def test_is_docker_installed(monkeypatch):
     # Simuler une exécution réussie de la commande "docker --version"
@@ -29,6 +30,7 @@ def test_is_docker_installed(monkeypatch):
     # Docker n'est pas installé
     assert is_docker_installed() == False
 
+
 # c) Test de la création d'un conteneur avec simulation d'input
 def test_create_container(monkeypatch):
 
@@ -43,13 +45,11 @@ def test_create_container(monkeypatch):
         # Imprimer pour voir si la commande est bien appelée
         print(f"Simulating subprocess.run with args: {args}")
         return subprocess.CompletedProcess(args, 0)
-    
+
     monkeypatch.setattr(subprocess, 'run', mock_run)
 
-    # Appeler la fonction de création de conteneur
+    # Exécuter la fonction create_container
     create_container()
 
     # Vérifier que le compteur de conteneurs a été incrémenté
     assert container_count == 1
-
-
