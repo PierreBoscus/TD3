@@ -22,7 +22,7 @@ if system == "Linux":
         display_message("Vous êtes root.", Fore.GREEN)
     else:
         display_message("Vous n'êtes pas root.", Fore.RED)
-        exit()
+        pass
 
     # Détection de la famille Linux (Debian/RedHat)
     with open("/etc/os-release", "r") as f:
